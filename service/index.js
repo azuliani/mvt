@@ -31,9 +31,11 @@ app.ws("/pushupdates", function(ws, req) {
             ws.send(JSON.stringify({totalpushes}))
         });
     });
-    updateEmitter.on('pushes', function(totalpushes){
+    function onPush(totalpushes){
         ws.send(JSON.stringify({totalpushes}));
-    });
+    };
+    updateEmitter.on('pushes', onPush);
+    ws.on('close', () => { updateEmitter.removeListener('pushes', onPush) })
 });
 
 var PORT = 3000
