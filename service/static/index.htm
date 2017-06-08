@@ -6,7 +6,9 @@
 <title>WebSockets Client</title>
  
 <script>
-var socket = new WebSocket("ws://localhost:3000/pushupdates");
+var loc = window.location
+console.log(loc);
+var socket = new WebSocket("ws://" + loc.hostname + ":" + loc.port + "/pushupdates");
 socket.onopen = function(){
     socket.send("test");
 }
