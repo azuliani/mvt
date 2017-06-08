@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+ 
+<title>WebSockets Client</title>
+ 
+<script>
+var socket = new WebSocket("ws://localhost:3000/pushupdates");
+socket.onopen = function(){
+    socket.send("test");
+}
+socket.onmessage = function(msg){
+    var obj = JSON.parse(msg.data);
+    console.log(obj)
+    if (obj.totalpushes || obj.totalpushes === 0){
+        $('#pushes').text(obj.totalpushes);
+    }
+}
+</script>
+
+</head>
+<body>
+<div id="wrapper">
+ 
+    <div id="container">
+ 
+        <h1>Totaal # drukken op de knop:</h1>
+    
+        <span id="pushes">?</span>
+        
+ 
+    </div><!-- #container -->
+ 
+</div>
+</body>
+</html>
