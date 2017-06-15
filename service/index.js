@@ -34,8 +34,14 @@ app.ws("/pushupdates", function(ws, req) {
     function onPush(totalpushes){
         ws.send(JSON.stringify({totalpushes}));
     };
+    var pingInterval = setInterval(function () {
+        ws.send(JSON.stringify({ping: true}));
+    },1000);
     updateEmitter.on('pushes', onPush);
-    ws.on('close', () => { updateEmitter.removeListener('pushes', onPush) })
+    ws.on('close', () => { 
+        updateEmitter.removeListener('pushes', onPush) 
+        clearInterval(pingInterval);
+    })
 });
 
 var PORT = 3000

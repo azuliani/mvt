@@ -12,12 +12,28 @@ var socket = new WebSocket("ws://" + loc.hostname + ":" + loc.port + "/pushupdat
 socket.onopen = function(){
     socket.send("test");
 }
+
+var pingTimeout;
+
+function refreshPing(){
+    if (pingTimeout){
+        clearTimeout(pingTimeout);
+    }
+    pingTimeout = setTimeout(function(){
+        location.reload()
+    },5000); 
+}
+
 socket.onmessage = function(msg){
     var obj = JSON.parse(msg.data);
     console.log(obj)
     if (obj.totalpushes || obj.totalpushes === 0){
         $('#pushes').text(obj.totalpushes);
     }
+    if (obj.ping) {
+        refreshPing();
+    }
+
 }
 </script>
 
@@ -29,7 +45,7 @@ socket.onmessage = function(msg){
  
         <h1>Totaal # drukken op de knop:</h1>
     
-        <span id="pushes">?</span>
+        <span id="pushes" style="font-size: 230pt">?</span>
         
  
     </div><!-- #container -->
