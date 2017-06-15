@@ -6,35 +6,52 @@
 <title>WebSockets Client</title>
  
 <script>
-var loc = window.location
-console.log(loc);
-var socket = new WebSocket("ws://" + loc.hostname + ":" + loc.port + "/pushupdates");
-socket.onopen = function(){
-    socket.send("test");
-}
 
-var pingTimeout;
+document.addEventListener("DOMContentLoaded", function() {
+  
+  var ws = null;
 
-function refreshPing(){
-    if (pingTimeout){
-        clearTimeout(pingTimeout);
-    }
-    pingTimeout = setTimeout(function(){
-        location.reload()
-    },5000); 
-}
+  function start(){
 
-socket.onmessage = function(msg){
-    var obj = JSON.parse(msg.data);
-    console.log(obj)
-    if (obj.totalpushes || obj.totalpushes === 0){
-        $('#pushes').text(obj.totalpushes);
-    }
-    if (obj.ping) {
-        refreshPing();
+    var loc = window.location
+    ws = new WebSocket("ws://" + loc.hostname + ":" + loc.port + "/pushupdates");
+    ws.onopen = function(){
+      console.log('connected!');
+    };
+    ws.onmessage = function(e){
+      console.log(e.data);
+    };
+    socket.onmessage = function(msg){
+      var obj = JSON.parse(msg.data);
+      console.log(obj)
+      if (obj.totalpushes || obj.totalpushes === 0){
+          $('#pushes').text(obj.totalpushes);
+      }
+      if (obj.ping) {
+          refreshPing();
+      }
     }
 
-}
+    ws.onclose = function(){
+      console.log('closed!');
+      //reconnect now
+      check();
+    };
+
+  }
+
+  function check(){
+    if(!ws || ws.readyState == 3) start();
+  }
+
+  start();
+
+  setInterval(check, 5000);
+
+});
+
+
+
 </script>
 
 </head>
