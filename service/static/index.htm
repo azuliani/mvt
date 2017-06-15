@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="./jquery.min.js"></script>
  
 <title>WebSockets Client</title>
  
@@ -10,25 +10,30 @@
 document.addEventListener("DOMContentLoaded", function() {
   
   var ws = null;
+  var lastPing = new Date();
 
   function start(){
-
+    console.log("Connecting now!")   
+    if (ws) {
+        ws.onmessage = function(){};
+        ws.onclose = function(){};
+        ws.onopen = function(){};
+        ws.close()
+    }
     var loc = window.location
     ws = new WebSocket("ws://" + loc.hostname + ":" + loc.port + "/pushupdates");
     ws.onopen = function(){
       console.log('connected!');
+      ws.send("gimmenumber!")
     };
-    ws.onmessage = function(e){
-      console.log(e.data);
-    };
-    socket.onmessage = function(msg){
+    ws.onmessage = function(msg){
       var obj = JSON.parse(msg.data);
       console.log(obj)
       if (obj.totalpushes || obj.totalpushes === 0){
           $('#pushes').text(obj.totalpushes);
       }
       if (obj.ping) {
-          refreshPing();
+        lastPing = new Date();
       }
     }
 
@@ -41,7 +46,12 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function check(){
-    if(!ws || ws.readyState == 3) start();
+    if (!ws || ws.readyState == 3) {
+        return start();
+    }
+    if (new Date() - lastPing > 5000) {
+        return start();
+    } 
   }
 
   start();
