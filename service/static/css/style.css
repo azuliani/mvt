@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'cava';
+  src: url('cavamomentje.ttf');
+}
+
+@font-face {
+  font-family: 'score';
+  src: url('CollegiateFLF.ttf');
+}
+
+@font-face {
+  font-family: 'timer';
+  src: url('led.ttf');
+}
+
+#pushes-div {
+	font-family: 'score';
+	margin: auto;
+	margin-top: 40px;
+  width: 50%;
+	text-align: center;
+	color: whitesmoke;
+	font-size: 230pt;
+	height: 200px;
+}
+
+#timer {
+	font-family: 'timer';
+  -webkit-animation-duration: 5s;
+	font-size: 50pt;
+	position: fixed;
+	bottom: 0;
+	right: 20px;
+	color: whitesmoke;
+}
+
+body {
+	background-image: url('images/backgroundMVT.jpg');
+	background-size: cover;
+}
+
+#eventtext {
+	color: whitesmoke;
+	position: fixed;
+	font-family: 'cava';
+  -webkit-animation-duration: 3s;
+	left: 20px;
+	bottom: 200px;
+	font-size: 200pt;
+}
+
+#eventsubtext {
+	-webkit-animation-duration: 3s;
+	color: whitesmoke;
+	position: fixed;
+	font-family: 'arial';
+	left: 20px;
+	bottom: 100px;
+	font-size: 60pt;
+}
+
+#beer-image {
+	width: 200px;
+	height: 400px;
+	background-size: 100%;
+	bottom: 200px;
+	left: 200px;
+	position: fixed;
+	-webkit-animation-duration: 2s
+}

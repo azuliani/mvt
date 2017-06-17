@@ -2,7 +2,9 @@
 <html>
 <head>
 <script src="./jquery.min.js"></script>
- 
+<link rel="stylesheet" href="./css/animate.css">
+<link rel="stylesheet" href="./css/style.css">
+<script src="./data.json"></script>
 <title>WebSockets Client</title>
  
 <script>
@@ -11,9 +13,16 @@ document.addEventListener("DOMContentLoaded", function() {
   
   var ws = null;
   var lastPing = new Date();
+	var eventStarted = false;
+	var totalPushes;
+	var nextGoal = -1;
+	var prevGoal = 0;
+	var accents = ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble', 'jello'];
+	var stage = 0;
 
   function start(){
-    console.log("Connecting now!")   
+    console.log("Connecting now!");
+		swapImages();
     if (ws) {
         ws.onmessage = function(){};
         ws.onclose = function(){};
@@ -28,9 +37,18 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     ws.onmessage = function(msg){
       var obj = JSON.parse(msg.data);
-      console.log(obj)
+      //console.log(obj)
       if (obj.totalpushes || obj.totalpushes === 0){
-          $('#pushes').text(obj.totalpushes);
+       	$('#pushes').text(obj.totalpushes);
+				totalpushes = obj.totalpushes;
+		  	//$('#pushes').animateCss('flash');
+				if(nextGoal === -1) {
+					calculateNextGoal(obj.totalpushes);
+				}
+				if(!eventStarted) {
+		  		checkEvents(obj.totalpushes);
+					changeImage(obj.totalpushes);
+				}
       }
       if (obj.ping) {
         lastPing = new Date();
@@ -46,22 +64,153 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function check(){
-    if (!ws || ws.readyState == 3) {
+    if (!ws || ws.readyState === 3) {
         return start();
     }
     if (new Date() - lastPing > 5000) {
         return start();
     } 
   }
+	
+  function checkEvents(totalpushes) {
+	  var eventData = $.grep(eventsData, function(e){ return e.count === totalpushes; });
+		if(eventData.length >= 1) {
+			startEvent(eventData[0]);
+			eventStarted = true;
+			prevGoal = totalpushes;
+		}
+  }
+	
+	function changeImage(totalpushes) {
+		var percentage = (totalpushes - prevGoal) / (nextGoal - prevGoal);
+		if(0 < percentage && percentage < 0.25) {
+			stage = 0;
+		} else if(0.25 <= percentage && percentage < 0.50) {
+			stage = 1;
+		} else if (0.50 <= percentage && percentage <= 0.75) {
+			stage = 2;
+		} else if (0.75 <= percentage) {
+			stage = 3;
+		}
+	}
+	
+	function swapImages() {
+		interval(function() {
+			if(!eventStarted) {
+				var bg_url = $('#beer-image').css('background-image');
+				var stageToShow = stage;
+				if(bg_url.indexOf('bier' + stage + '.png') !== -1) {
+					stageToShow = stage + 1
+				}
+    		$('#beer-image').css('background-image', 'url(css/images/bier' + stageToShow + '.png)');
+			}
+		}, 2000);
+	}
+	
+	function calculateNextGoal() {
+		var closest = 0;
+		var index = 0;
+		debugger;
+		for(var i = eventsData.length-1; i >= 0; i--) {
+			if(totalpushes < eventsData[i].count) {
+				closest = eventsData[i].count;
+				index = i;
+			}
+		}
+		nextGoal = closest;
+		if(index > 0) {
+				prevGoal = eventsData[index - 1].count;	
+		}
+	}
+		
+	function startEvent(eventData) {
+		var countDownDate = new Date().getTime() + eventData.time * 1000,
+				timerSpan = $('#timer'),
+				textSpan = $('#eventtext'),
+				subtextSpan = $('#eventsubtext'),
+				imageDiv = $('#beer-image');
+				
+			interval(function() {
+					var now = new Date().getTime(),
+						distance = countDownDate - now,
+						minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+						seconds = Math.floor((distance % (1000 * 60)) / 1000);
+					timerSpan.text(minutes + 'm ' + pad(seconds, 2) + 's');
+					imageDiv.hide();
+					if(distance < 0) {
+						timerSpan.hide();
+						subtextSpan.animateCss('fadeOutLeft');
+						textSpan.animateCss('fadeOutLeft', hideEventSpans);
+						eventStarted = false;
+						calculateNextGoal();
+						stage = 0;
+						return;
+					}
+					if(seconds % 5 === 0 && !(minutes == 0 && seconds == 0)) {
+						textSpan.animateCss(accents[Math.floor(Math.random() * accents.length)]);
+					}
+				}, 1000, eventData.time);
+		imageDiv.animateCss('fadeOut');
+		textSpan.text(eventData.text);
+		textSpan.animateCss('slideInLeft');
+		subtextSpan.text(eventData.subtext);
+		subtextSpan.animateCss('slideInLeft');
+		textSpan.show();
+		subtextSpan.show();
+		timerSpan.animateCss('slideInUp');
+		timerSpan.show();
+	}
+		
+	function hideEventSpans() {
+		$('#eventtext').hide();
+		$('#eventsubtext').hide();
+		$('#beer-image').show();
+	}
+		
+	
+		
+	function interval(func, wait, times){
+    var interv = function(w, t){
+        return function(){
+            if(typeof t === "undefined" || t-- > 0){
+                setTimeout(interv, w);
+                try{
+                    func.call(null);
+                }
+                catch(e){
+                    t = 0;
+                    throw e.toString();
+                }
+            }
+        };
+    }(wait, times);
+
+    setTimeout(interv, wait);
+};
 
   start();
 
   setInterval(check, 5000);
-
+	
+	
+  $.fn.extend({
+    animateCss: function (animationName, callback) {
+      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+          $(this).removeClass('animated ' + animationName);
+					if(callback !== null && callback !== undefined) {
+						callback();
+					}
+        });
+    }
+  });
+		
+	function pad(n, width, z) {
+  	z = z || '0';
+  	n = n + '';
+  	return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+	}
 });
-
-
-
 </script>
 
 </head>
@@ -69,12 +218,25 @@ document.addEventListener("DOMContentLoaded", function() {
 <div id="wrapper">
  
     <div id="container">
- 
-        <h1>Totaal # drukken op de knop:</h1>
-    
-        <span id="pushes" style="font-size: 230pt">?</span>
+				<div id="pushes-div">
+        	<span id="pushes">?</span>
+				</div>
+				
+				<div id="eventtext-div">
+        	<span id="eventtext"></span>
+				</div>
+				
+				<div id="eventsubtext-div">
+        	<span id="eventsubtext"></span>
+				</div>
         
- 
+ 				<div id="timer-div">
+        	<span id="timer"></span>
+				</div>
+			
+				<div id="beer-image">
+			
+				</div>
     </div><!-- #container -->
  
 </div>

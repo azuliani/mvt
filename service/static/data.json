@@ -1,0 +1,63 @@
+var eventsData = [
+{
+	count: 10,
+	text: "Cavamomentje",
+	subtext: "Gratis cava!!!",
+	time: 20
+},
+{
+	count: 20,
+	text: "Cavamomentje",
+	subtext: "Gratis cava!!!",
+	time: 120
+},
+{
+	count: 30,
+	text: "Cavamomentje",
+	subtext: "Gratis cava!!!",
+	time: 40
+},
+{
+	count: 80,
+	text: "Cavamomentje",
+	subtext: "Gratis cava!!!",
+	time: 40
+},
+{
+	count: 90,
+	text: "Cavamomentje",
+	subtext: "Gratis cava!!!",
+	time: 40
+},
+{
+	count: 100,
+	text: "Cavamomentje",
+	subtext: "Gratis cava!!!",
+	time: 5
+},
+{
+	count: 110,
+	text: "Cavamomentje",
+	subtext: "Gratis cava!!!",
+	time: 5
+},
+{
+	count: 120,
+	text: "Cavamomentje",
+	subtext: "Gratis cava!!!",
+	time: 5
+},
+{
+	count: 130,
+	text: "Cavamomentje",
+	subtext: "Gratis cava!!!",
+	time: 5
+},
+{
+	count: 140,
+	text: "Cavamomentje",
+	subtext: "Gratis cava!!!",
+	time: 5
+},
+
+]
