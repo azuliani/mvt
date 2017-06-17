@@ -22,7 +22,7 @@ debounceval = 1
 while True:
     val = GPIO.input(26)
     now = current_milli_time()
-    if debouncing and now - debouncing >= 80 and val != debounceval:
+    if debouncing and now - debouncing >= 50 and val != debounceval:
         debouncing = False
     
     if not debouncing:
