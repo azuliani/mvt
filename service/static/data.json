@@ -1,63 +1,42 @@
 var eventsData = [
 {
-	count: 10,
-	text: "Cavamomentje",
-	subtext: "Gratis cava!!!",
-	time: 20
-},
-{
-	count: 20,
-	text: "Cavamomentje",
-	subtext: "Gratis cava!!!",
-	time: 120
-},
-{
 	count: 30,
 	text: "Cavamomentje",
-	subtext: "Gratis cava!!!",
-	time: 40
+	subtext: "20 flessen cava!",
+	time: 20,
+	showTimer: false,
+	style: "cava",
 },
 {
-	count: 80,
-	text: "Cavamomentje",
-	subtext: "Gratis cava!!!",
-	time: 40
+	count: 35,
+	text: "Mannen Weten Waarom-momentje",
+	subtext: "2 minuten gratis bier",
+	time: 120,
+	showTimer: true,
+	style: "mannen",
 },
 {
-	count: 90,
-	text: "Cavamomentje",
-	subtext: "Gratis cava!!!",
-	time: 40
+	count: 40,
+	text: "Mexicaans momentje",
+	subtext: "Gratis tortillas!",
+	time: 40,
+	showTimer: false,
+	style: "mexico"
 },
 {
-	count: 100,
-	text: "Cavamomentje",
-	subtext: "Gratis cava!!!",
-	time: 5
+	count: 45,
+	text: "Toastje dabei-momentje",
+	subtext: "Toastjes voor de rappe!",
+	time: 40,
+	showTimer: false,
+	style: "toast"
 },
 {
-	count: 110,
-	text: "Cavamomentje",
-	subtext: "Gratis cava!!!",
-	time: 5
-},
-{
-	count: 120,
-	text: "Cavamomentje",
-	subtext: "Gratis cava!!!",
-	time: 5
-},
-{
-	count: 130,
-	text: "Cavamomentje",
-	subtext: "Gratis cava!!!",
-	time: 5
-},
-{
-	count: 140,
-	text: "Cavamomentje",
-	subtext: "Gratis cava!!!",
-	time: 5
-},
-
+	count: 51,
+	text: "Verrassings momentje",
+	subtext: "",
+	time: 40,
+	showTimer: false,
+	style: "suprise"
+}
 ]

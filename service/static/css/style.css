@@ -6,6 +6,31 @@
 }
 
 @font-face {
+  font-family: 'mannen';
+  src: url('mannen.ttf');
+}
+
+@font-face {
+  font-family: 'mexicaans';
+  src: url('mexicaans.ttf');
+}
+
+@font-face {
+  font-family: 'suprise';
+  src: url('suprise.ttf');
+}
+
+@font-face {
+  font-family: 'toast';
+  src: url('toast.ttf');
+}
+
+@font-face {
+  font-family: 'bebas';
+  src: url('BEBAS.ttf');
+}
+
+@font-face {
   font-family: 'score';
   src: url('CollegiateFLF.ttf');
 }
@@ -19,7 +44,7 @@
 	font-family: 'score';
 	margin: auto;
 	margin-top: 40px;
-  width: 50%;
+  width: ;
 	text-align: center;
 	color: whitesmoke;
 	font-size: 230pt;
@@ -44,29 +69,65 @@ body {
 #eventtext {
 	color: whitesmoke;
 	position: fixed;
-	font-family: 'cava';
   -webkit-animation-duration: 3s;
-	left: 20px;
+	left: 80px;
 	bottom: 200px;
+}
+
+.cava {
+	font-family: 'cava';
 	font-size: 200pt;
+}
+
+.mannen {
+	font-family: 'mannen';
+	width: 1000px;
+	font-size: 100pt;
+}
+
+.mexico {
+	font-family: 'mexicaans';
+	font-size: 90pt;
+}
+
+.toast {
+	font-family: 'toast';
+	font-size: 95pt;
+}
+
+.suprise {
+	font-family: 'suprise';
+	font-size: 100pt;
+	width: 1000px;
+	bottom: 100px;
 }
 
 #eventsubtext {
 	-webkit-animation-duration: 3s;
 	color: whitesmoke;
 	position: fixed;
-	font-family: 'arial';
-	left: 20px;
-	bottom: 100px;
-	font-size: 60pt;
+	font-family: 'bebas';
+	left: 80px;
+	bottom: 120px;
+	font-size: 40pt;
 }
 
 #beer-image {
-	width: 200px;
-	height: 400px;
+	width: 300px;
+	height: 500px;
 	background-size: 100%;
-	bottom: 200px;
-	left: 200px;
+	bottom: 40px;
+	left: 100px;
 	position: fixed;
-	-webkit-animation-duration: 2s
+}
+
+#togo {
+	text-align:center;
+	width: 300px;
+	bottom: 170px;
+	left: 460px;
+	font-family: 'bebas';
+	position: fixed;
+	color: whitesmoke;
+	font-size: 60pt;
 }
