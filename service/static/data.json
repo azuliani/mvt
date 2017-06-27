@@ -38,5 +38,13 @@ var eventsData = [
 	time: 40,
 	showTimer: false,
 	style: "suprise"
+},
+{
+	count: 60,
+	text: "Cavamomentje",
+	subtext: "20 flessen cava!",
+	time: 20,
+	showTimer: false,
+	style: "cava",
 }
 ]

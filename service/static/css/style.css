@@ -93,6 +93,7 @@ body {
 .toast {
 	font-family: 'toast';
 	font-size: 95pt;
+	width: 1000px;
 }
 
 .suprise {
