@@ -116,7 +116,6 @@ body {
 #beer-image {
 	width: 300px;
 	height: 500px;
-	background-size: 100%;
 	bottom: 40px;
 	left: 100px;
 	position: fixed;

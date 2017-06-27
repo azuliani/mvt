@@ -50,14 +50,14 @@ document.addEventListener("DOMContentLoaded", function() {
 					calculateNextGoal(obj.totalpushes);
 				}
 				var togo = nextGoal - totalpushes;
-				if(!hideAll) {
-					$('#togo').text('NOG ' + togo + ' TE GAAN');
-				}
 				if(!eventStarted & !hideAll) {
+					$('#togo').text('NOG ' + togo + ' TE GAAN');
 		  		checkEvents(obj.totalpushes);
-					changeImage(obj.totalpushes);
 				}
-				hideOrShow();
+				changeImage(obj.totalpushes);
+				if(!eventStarted) {
+					hideOrShow();
+				}
       }
       if (obj.ping) {
         lastPing = new Date();
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	function swapImages() {
 		interval(function() {
 			if(!eventStarted) {
-				var bg_url = $('#beer-image').css('background-image');
+				var bg_url = $('#beer-image').attr('src');
 				var stageToShow = stage;
 				if(bg_url.indexOf('bier' + stage + '.png') !== -1) {
 					stageToShow = stage + 1
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				if(stageToShow > 5) {
 					stageToShow = 5;
 				}
-    		$('#beer-image').css('background-image', 'url(css/images/bier' + stageToShow + '.png)');
+    		$('#beer-image').attr('src', 'css/images/bier' + stageToShow + '.png');
 			}
 		}, 1200);
 	}
@@ -285,9 +285,9 @@ document.addEventListener("DOMContentLoaded", function() {
         	<span id="timer"></span>
 				</div>
 			
-				<div id="beer-image">
+				<img id="beer-image" src="css/images/bier0.png">
 			
-				</div>
+				</img>
     </div><!-- #container -->
  
 </div>
