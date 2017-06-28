@@ -119,6 +119,7 @@ body {
 	bottom: 40px;
 	left: 100px;
 	position: fixed;
+	display: none;
 }
 
 #togo {

@@ -46,14 +46,17 @@ document.addEventListener("DOMContentLoaded", function() {
       if (obj.totalpushes || obj.totalpushes === 0){
        	$('#pushes').text(obj.totalpushes);
 				totalpushes = obj.totalpushes;
+				if(!eventStarted & !hideAll) {	
+		  		checkEvents(obj.totalpushes);
+				}
 				if(nextGoal === -1) {
 					calculateNextGoal(obj.totalpushes);
 				}
 				var togo = nextGoal - totalpushes;
-				if(!eventStarted & !hideAll) {
+				if(!eventStarted && !hideAll) {
 					$('#togo').text('NOG ' + togo + ' TE GAAN');
-		  		checkEvents(obj.totalpushes);
 				}
+				
 				changeImage(obj.totalpushes);
 				if(!eventStarted) {
 					hideOrShow();
@@ -73,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 	
 	function hideOrShow() {
-		if(hideAll) {
+		if(hideAll && !eventStarted) {
 			$('#timer').hide();
 			$('#eventtext').hide();
 			$('#eventsubtext').hide();
@@ -101,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	  var eventData = $.grep(eventsData, function(e){ return e.count === totalpushes; });
 		if(eventData.length >= 1) {
 			startEvent(eventData[0]);
+			$('#togo').text('NOG 0 TE GAAN');
 			eventStarted = true;
 			prevGoal = totalpushes;
 		}
