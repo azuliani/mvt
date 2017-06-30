@@ -9,6 +9,7 @@ var app = express()
 var expressWs = require('express-ws')(app);
 
 var updateEmitter = new EventEmitter();
+updateEmitter.on('pushes', db.storeTst);
 
 app.use("/static", express.static('static'))
 
