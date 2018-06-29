@@ -1,54 +1,30 @@
 var eventsData = [
 {
-	count: 50,
+	count: 250,
 	text: "<img class=\'flag\' src=\'css/images/belgium.png\'/> België <img class=\'flag\' src=\'css/images/belgium.png\'/>",
-	subtext: "2  minuten  gratis  bier!",
-	time: 120,
+	subtext: "1 kopen 1 toe!",
+	time: 300,
 	showTimer: true,
 	style: "mannen",
 },
 {
-	count: 200,
-	text: "<img class=\'flag\' src=\'css/images/netherlands.png\'/> Holland <img class=\'flag\' src=\'css/images/netherlands.png\'/>",
-	subtext: "Kinneklop!",
-	time: 300,
-	showTimer: false,
-	style: "cava"
-},
-{
-	count: 400,
+	count: 750,
 	text: "<img class=\'flag\' src=\'css/images/france.png\'/> France <img class=\'flag\' src=\'css/images/france.png\'/>",
 	subtext: "Vin, Pain, Boursin!",
-	time: 900,
-	showTimer: false,
-	style: "mannen",
-},
-{
-	count: 600,
-	text: "<img class=\'flag\' src=\'css/images/belgium.png\'/> België <img class=\'flag\' src=\'css/images/belgium.png\'/>",
-	subtext: "2 minuten gratis bier!",
-	time: 120,
-	showTimer: false,
-	style: "mannen",
-},
-{
-	count: 700,
-	text: "<img class=\'flag\' src=\'css/images/russia.png\'/> Russia <img class=\'flag\' src=\'css/images/russia.png\'/>",
-	subtext: "Drankspel! (meer info aan de bar)",
-	time: 600,
+	time: 300,
 	showTimer: true,
-	style: "russia"
-},
-{
-	count: 900,
-	text: "<img class=\'flag\' src=\'css/images/belgium.png\'/> België <img class=\'flag\' src=\'css/images/belgium.png\'/>",
-	subtext: "Gadgets voor iedereen!",
-	time: 600,
-	showTimer: false,
 	style: "mannen",
 },
 {
 	count: 1000,
+	text: "<img class=\'flag\' src=\'css/images/belgium.png\'/> België <img class=\'flag\' src=\'css/images/belgium.png\'/>",
+	subtext: "1 kopen 1 toe!",
+	time: 300,
+	showTimer: true,
+	style: "mannen",
+},
+{
+	count: 1300,
 	text: "<img class=\'flag\' src=\'css/images/germany.png\'/> Duitsland  <img class=\'flag\' src=\'css/images/germany.png\'/>",
 	subtext: "Halve liters!",
 	time: 300,
@@ -56,11 +32,28 @@ var eventsData = [
 	style: "suprise"
 },
 {
-	count: 1200,
+	count: 1450,
+	text: "<img class=\'flag\' src=\'css/images/netherlands.png\'/> Holland <img class=\'flag\' src=\'css/images/netherlands.png\'/>",
+	subtext: "Kinneklop!",
+	time: 300,
+	showTimer: false,
+	style: "cava"
+},
+{
+	count: 1700,
+	text: "<img class=\'flag\' src=\'css/images/russia.png\'/> Russia <img class=\'flag\' src=\'css/images/russia.png\'/>",
+	subtext: "Er worden shotjes uitgedeeld. 10% is wodka, 90% is water. Bewaar je P-P-P-Pokerface en raad wie van je vrienden de wodka had!",
+	time: 600,
+	showTimer: true,
+	style: "russia"
+},
+{
+	count: 2000,
 	text: "<img class=\'flag\' src=\'css/images/belgium.png\'/> België <img class=\'flag\' src=\'css/images/belgium.png\'/>",
-	subtext: "Happy kwartierke!",
-	time: 900,
+	subtext: "1 kopen 1 toe!",
+	time: 300,
 	showTimer: true,
 	style: "mannen",
 },
+
 ]
