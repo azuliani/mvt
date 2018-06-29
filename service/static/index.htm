@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         ws.close()
     }
     var loc = window.location
-    ws = new WebSocket("ws://" + loc.hostname + ":" + loc.port + "/pushupdates");
+    ws = new WebSocket("ws://" + loc.hostname + ":" + 3000 + "/pushupdates");
     ws.onopen = function(){
       console.log('connected!');
       ws.send("gimmenumber!")
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		var startAnimation = function() {
 			imageDiv.hide();
 			togo.hide();
-			textSpan.text(eventData.text);
+			textSpan.html(eventData.text);
 			textSpan.animateCss('slideInLeft');
 			subtextSpan.text(eventData.subtext);
 			subtextSpan.animateCss('slideInLeft');
@@ -219,6 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		$('#eventsubtext').hide();
 		$('#beer-image').show();
 		$('#togo').show();
+        location.reload();
 	}
 		
 	

@@ -11,6 +11,11 @@
 }
 
 @font-face {
+  font-family: 'russia';
+  src: url('KyrillaSansSerif-Black.ttf');
+}
+
+@font-face {
   font-family: 'mexicaans';
   src: url('mexicaans.ttf');
 }
@@ -76,13 +81,18 @@ body {
 
 .cava {
 	font-family: 'cava';
-	font-size: 200pt;
+	font-size: 150pt;
 }
 
 .mannen {
 	font-family: 'mannen';
 	width: 1000px;
 	font-size: 100pt;
+}
+
+.russia {
+    font-family: 'russia';
+    font-size: 100pt;
 }
 
 .mexico {
@@ -131,4 +141,8 @@ body {
 	position: fixed;
 	color: whitesmoke;
 	font-size: 60pt;
+}
+
+.flag {
+    height: 0.6em;
 }
