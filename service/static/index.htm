@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         ws.close()
     }
     var loc = window.location
+    loc = {hostname: "localhost"}
     ws = new WebSocket("ws://" + loc.hostname + ":" + 3000 + "/pushupdates");
     ws.onopen = function(){
       console.log('connected!');
